@@ -1,6 +1,9 @@
 {
   "name": "watsonx-node",
   "version": "1.0.0",
+  "engines": {
+  "node": ">=18.0.0"
+},
   "description": "Node.js API integrada com IBM watsonx.ai",
   "main": "index.js",
   "scripts": {

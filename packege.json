@@ -1,0 +1,19 @@
+{
+  "name": "watsonx-node",
+  "version": "1.0.0",
+  "description": "Node.js API integrada com IBM watsonx.ai",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": ["ibm", "watsonx", "nodejs", "express"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ibm-cloud/watsonx-ai": "^1.0.0",
+    "axios": "^1.6.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.0"
+  }
+}

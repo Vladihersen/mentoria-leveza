@@ -1,10 +1,13 @@
 // index.js
-require('dotenv').config();
+// require('dotenv').config(); // ❌ Removido: não usar .env no IBM Code Engine
+                               // ✅ As variáveis são injetadas pelo próprio Code Engine
+
 const express = require('express');
 const app = express();
 const routes = require('./src/routes');
 
 const PORT = process.env.PORT || 8080;
+const HOST = '0.0.0.0'; // ✅ Escuta em todas as interfaces de rede
 
 // Middlewares
 app.use(express.json());
@@ -25,9 +28,10 @@ app.get('/', (req, res) => {
 // Rotas da API
 app.use('/api', routes);
 
-// Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`✅ Servidor rodando em http://localhost:${PORT}`);
-  console.log(`🔑 API Key: ${process.env.WATSONX_API_KEY ? 'configurada' : '❌ NÃO configurada'}`);
-  console.log(`📁 Project ID: ${process.env.WATSONX_PROJECT_ID ? 'configurado' : '❌ NÃO configurado'}`);
+// Iniciar servidor — HOST 0.0.0.0 obrigatório no IBM Code Engine
+app.listen(PORT, HOST, () => {
+  console.log(`✅ Servidor rodando em http://${HOST}:${PORT}`);
+  console.log(`🔑 API Key:    ${process.env.WATSONX_API_KEY  ? '✅ configurada'  : '❌ NÃO configurada'}`);
+  console.log(`📁 Project ID: ${process.env.WATSONX_PROJECT_ID ? '✅ configurado' : '❌ NÃO configurado'}`);
+  console.log(`🌐 URL:        ${process.env.WATSONX_URL       ? '✅ configurada'  : '❌ NÃO configurada'}`);
 });
